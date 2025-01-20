@@ -4,14 +4,16 @@ package com.raj.blog.controllers;
 
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.services.impl.PostServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class PostController {
 
+    @Autowired
     private PostServiceImpl postService;
 
     //create
@@ -21,6 +23,6 @@ public class PostController {
             @PathVariable Integer userId,
             @PathVariable Integer categoryId){
         PostDto addedPost = this.postService.createPost(postDto, userId, categoryId);
-        return new ResponseEntity<>(postDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(addedPost, HttpStatus.CREATED);
     }
 }

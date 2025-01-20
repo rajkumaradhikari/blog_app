@@ -10,6 +10,7 @@ class BlogAppApisApplicationTests {
 
 	@Autowired
 	private UserRepo userRepo;
+	//
 
 	@Test
 	void contextLoads() {
@@ -21,6 +22,7 @@ class BlogAppApisApplicationTests {
 		System.out.println("==================="+className);
 		String packageName = this.userRepo.getClass().getPackageName();
 		System.out.println("==================="+packageName);
+
 	}
 
 }
