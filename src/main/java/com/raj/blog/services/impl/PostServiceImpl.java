@@ -4,6 +4,7 @@ import com.raj.blog.entities.Category;
 import com.raj.blog.entities.Post;
 import com.raj.blog.entities.User;
 import com.raj.blog.exceptions.ResourceNotFoundException;
+import com.raj.blog.payloads.CategoryDto;
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.repositories.CategoryRepo;
 import com.raj.blog.repositories.PostRepo;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -73,7 +75,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getPostByCategory(Integer categoryId) {
-        return null;
+        Category category = this.categoryRepo.findById(categoryId).orElseThrow(()->
+                new ResourceNotFoundException("categoryId","categoryId",categoryId));
+        List<Post> byCategory = this.postRepo.findByCategory(category);
+//        List<PostDto> byCategoryDto = byCategory.stream().map(post ->
+//                this.modelMapper.map(byCategory, PostDto.class)).collect(Collectors.toList());
+        List<PostDto> byCategoryDto = byCategory.stream().map((post) ->
+                this.modelMapper.map(post , PostDto.class)).collect(Collectors.toList());
+        return byCategoryDto;
     }
 
     @Override
