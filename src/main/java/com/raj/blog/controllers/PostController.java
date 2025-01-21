@@ -28,15 +28,22 @@ public class PostController {
         return new ResponseEntity<>(addedPost, HttpStatus.CREATED);
     }
 
+    //get post by category
     @GetMapping("/postByCategory/{categoryId}")
     public ResponseEntity<List<PostDto>> getPostByCategory(@PathVariable Integer categoryId){
         List<PostDto> postByCategory = postService.getPostByCategory(categoryId);
         return new ResponseEntity<List<PostDto>>(postByCategory,HttpStatus.OK);
     }
-
+    //get post by user
     @GetMapping("/postByUser/{userId}")
     public ResponseEntity<List<PostDto>> getPostByUser(@PathVariable Integer userId){
         List<PostDto> postByUser = postService.getPostsByUser(userId);
         return new ResponseEntity<List<PostDto>>(postByUser,HttpStatus.OK);
+    }
+
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId){
+        PostDto postById = postService.getPostById(postId);
+        return new ResponseEntity<>(postById,HttpStatus.OK);
     }
 }

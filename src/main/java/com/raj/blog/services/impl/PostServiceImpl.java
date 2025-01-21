@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,7 +70,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto getPostById(Integer postId) {
-        return null;
+        Post post = this.postRepo.findById(postId).orElseThrow(() ->
+                new ResourceNotFoundException("postId", "postId", postId));
+       return new ModelMapper().map(post,PostDto.class);
     }
 
     @Override
