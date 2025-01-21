@@ -4,7 +4,6 @@ import com.raj.blog.entities.Category;
 import com.raj.blog.entities.Post;
 import com.raj.blog.entities.User;
 import com.raj.blog.exceptions.ResourceNotFoundException;
-import com.raj.blog.payloads.CategoryDto;
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.repositories.CategoryRepo;
 import com.raj.blog.repositories.PostRepo;
@@ -87,7 +86,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getPostsByUser(Integer userId) {
-        return null;
+        User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("userId","userId",userId));
+        List<Post> byUser = this.postRepo.findByUser(user);
+        List<PostDto> byUserDto = byUser.stream().map((users) -> this.modelMapper.map(users, PostDto.class)).collect(Collectors.toList());
+        return byUserDto;
     }
 
     @Override

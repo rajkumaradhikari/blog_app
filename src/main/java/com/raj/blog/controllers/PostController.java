@@ -33,4 +33,10 @@ public class PostController {
         List<PostDto> postByCategory = postService.getPostByCategory(categoryId);
         return new ResponseEntity<List<PostDto>>(postByCategory,HttpStatus.OK);
     }
+
+    @GetMapping("/postByUser/{userId}")
+    public ResponseEntity<List<PostDto>> getPostByUser(@PathVariable Integer userId){
+        List<PostDto> postByUser = postService.getPostsByUser(userId);
+        return new ResponseEntity<List<PostDto>>(postByUser,HttpStatus.OK);
+    }
 }
