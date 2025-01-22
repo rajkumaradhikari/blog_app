@@ -2,6 +2,7 @@ package com.raj.blog.controllers;
 
 
 
+import com.raj.blog.payloads.ApiResponse;
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.services.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,11 @@ public class PostController {
     public ResponseEntity<List<PostDto>> getAllPosts(){
         List<PostDto> allPosts = postService.getAllPosts();
         return new ResponseEntity<List<PostDto>>(allPosts,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletePost/{postId}")
+    public ResponseEntity<ApiResponse> deletePost(@PathVariable Integer postId){
+        this.postService.deletePost(postId);
+        return  new ResponseEntity<ApiResponse>(new ApiResponse("post deleted successuflly",true),HttpStatus.OK);
     }
 }
