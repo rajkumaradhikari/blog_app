@@ -2,6 +2,7 @@ package com.raj.blog.controllers;
 
 
 
+import com.raj.blog.entities.Post;
 import com.raj.blog.payloads.ApiResponse;
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.services.impl.PostServiceImpl;
@@ -59,5 +60,11 @@ public class PostController {
     public ResponseEntity<ApiResponse> deletePost(@PathVariable Integer postId){
         this.postService.deletePost(postId);
         return  new ResponseEntity<ApiResponse>(new ApiResponse("post deleted successuflly",true),HttpStatus.OK);
+    }
+
+    @PutMapping("/post/{postId}")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId){
+        PostDto updatePost = this.postService.updatePost(postDto, postId);
+        return new ResponseEntity<>(updatePost,HttpStatus.OK);
     }
 }
