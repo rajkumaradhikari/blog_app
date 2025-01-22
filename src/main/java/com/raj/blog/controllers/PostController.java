@@ -51,15 +51,18 @@ public class PostController {
     }
 
     @GetMapping("/allPosts")
-    public ResponseEntity<List<PostDto>> getAllPosts(){
-        List<PostDto> allPosts = postService.getAllPosts();
+    public ResponseEntity<List<PostDto>> getAllPosts(
+            @RequestParam(value = "pageNumber",defaultValue = "1",required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize",defaultValue = "15",required = false) Integer pageSize
+    ){
+        List<PostDto> allPosts = postService.getAllPosts(pageNumber, pageSize);
         return new ResponseEntity<List<PostDto>>(allPosts,HttpStatus.OK);
     }
 
     @DeleteMapping("/deletePost/{postId}")
     public ResponseEntity<ApiResponse> deletePost(@PathVariable Integer postId){
         this.postService.deletePost(postId);
-        return  new ResponseEntity<ApiResponse>(new ApiResponse("post deleted successuflly",true),HttpStatus.OK);
+        return  new ResponseEntity<ApiResponse>(new ApiResponse("post deleted successfully",true),HttpStatus.OK);
     }
 
     @PutMapping("/post/{postId}")
