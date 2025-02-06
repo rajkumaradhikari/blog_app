@@ -1,6 +1,7 @@
 package com.raj.blog.services;
 
 import com.raj.blog.payloads.PostDto;
+import com.raj.blog.payloads.PostResponse;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface PostService {
     void deletePost(Integer postId);
 
     //get all posts
-    List<PostDto> getAllPosts(Integer pageNumber, Integer pageSize);
+    PostResponse getAllPosts(Integer pageNumber, Integer pageSize);
 
     //get single post
     PostDto getPostById(Integer postId);
