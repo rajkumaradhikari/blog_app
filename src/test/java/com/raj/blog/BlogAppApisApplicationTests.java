@@ -9,20 +9,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 class BlogAppApisApplicationTests {
 
 	@Autowired
-	private UserRepo userRepo;
-	//
+	public UserRepo userRepo;
 
 	@Test
 	void contextLoads() {
 	}
 
 	@Test
-	public void repoTest(){
+	void userRepoTest()
+	{
 		String className = this.userRepo.getClass().getName();
-		System.out.println("==================="+className);
 		String packageName = this.userRepo.getClass().getPackageName();
-		System.out.println("==================="+packageName);
 
+		System.out.println("////////////////////////////");
+		System.out.println("Class Name :"+className);
+		System.out.println("Package Name :"+packageName);
 	}
-
 }
