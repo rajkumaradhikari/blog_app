@@ -12,7 +12,7 @@ public class BlogAppApisApplication {
 		SpringApplication.run(BlogAppApisApplication.class, args);
 	}
 	@Bean
-	public ModelMapper modelMapper(){
+	public ModelMapper modelMapper(){  //helps in automatically mapping fields between objects.
 		return new ModelMapper();
 	}
 

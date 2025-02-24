@@ -2,7 +2,7 @@ package com.raj.blog.controllers;
 
 
 
-import com.raj.blog.entities.Post;
+
 import com.raj.blog.payloads.ApiResponse;
 import com.raj.blog.payloads.PostDto;
 import com.raj.blog.payloads.PostResponse;
