@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAllUser() {
         List<User> users = this.userRepo.findAll();
         List<UserDto> listOfUsers = users.stream().map(user ->
-                this.userToDto(user)).collect(Collectors.toList());
+                this.userToDto(user)).filter(Objects::nonNull).collect(Collectors.toList());
         return listOfUsers;
     }
 
