@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResourceNotFoundException  extends RuntimeException{  //creating own custom exception
+public class ResourceNotFoundException  extends RuntimeException{ //custom exception
     String resourceName;
     String fieldName;
     long fieldValue;
